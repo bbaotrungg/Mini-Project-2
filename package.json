@@ -1,0 +1,16 @@
+{
+  "name": "vku-study-spaces-project",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "postinstall": "npm --prefix study-room install",
+    "start": "npm --prefix study-room run start --",
+    "web": "npm --prefix study-room run web --",
+    "android": "npm --prefix study-room run android --",
+    "ios": "npm --prefix study-room run ios --",
+    "server": "npm --prefix study-room run server --",
+    "typecheck": "npm --prefix study-room run typecheck",
+    "lint": "npm --prefix study-room run lint",
+    "test": "npm --prefix study-room test"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "environment": "Google Chrome desktop, 390 × 844 CSS pixels; browser preview, not Android/iOS emulator",
+  "capturedAt": "2026-10-13T12:22:27.952Z",
+  "student": "Nguyen Ngoc Bao Trung",
+  "screenshots": [
+    "01-discover-browser.png",
+    "02-slots-browser.png",
+    "03-qr-pass-browser.png",
+    "04-bookings-browser.png"
+  ],
+  "assertions": [
+    "session entry",
+    "loaded room photo",
+    "reservation",
+    "QR pass",
+    "disabled booked slot",
+    "reservation persists after reload"
+  ],
+  "pageErrors": []
+}

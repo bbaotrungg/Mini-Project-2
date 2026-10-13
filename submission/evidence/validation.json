@@ -1,0 +1,17 @@
+{
+  "recordedAt": "2026-10-13T12:22:47.909Z",
+  "results": {
+    "typecheck": {
+      "command": "npm.cmd run typecheck",
+      "status": "passed"
+    },
+    "lint": {
+      "command": "npm.cmd run lint",
+      "status": "passed"
+    },
+    "tests": {
+      "command": "npm.cmd test",
+      "status": "passed"
+    }
+  }
+}

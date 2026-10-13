@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><title>Mini-Project 2 — Short Technical Report</title>
+<style>
+@page { size: A4; margin: 14mm 14mm 17mm; }
+* { box-sizing: border-box; } body { margin: 0; font-family: Arial, sans-serif; color: #19352e; font-size: 10pt; line-height: 1.35; }
+.page { height: 263mm; break-after: page; display: flow-root; } .page:last-child { break-after: auto; }
+.kicker { color: #257a60; font-size: 9pt; font-weight: 700; letter-spacing: 1.4px; margin-bottom: 3mm; }
+h1 { font-size: 21pt; line-height: 1.15; margin: 0 0 5mm; } h2 { font-size: 14pt; margin: 6mm 0 3mm; padding-bottom: 2mm; border-bottom: 1px solid #d5e3dc; } h3 { font-size: 11pt; margin: 4mm 0 2mm; }
+p { margin: 0 0 3mm; } ul, ol { margin: 2mm 0 4mm; padding-left: 5mm; } li { margin-bottom: 1.5mm; }
+.metadata { background: #eef6f1; border-left: 3px solid #257a60; padding: 4mm; margin-bottom: 5mm; font-size: 10pt; }
+.small { font-size: 9pt; color: #526b62; } .note { background: #f7f5ee; border: 1px solid #e7dfc8; border-radius: 3mm; padding: 3mm; font-size: 9pt; }
+a { color: #20765c; text-decoration: underline; overflow-wrap: anywhere; } table { width: 100%; border-collapse: collapse; font-size: 9pt; line-height: 1.3; } th { background: #20765c; color: white; text-align: left; padding: 2.5mm; } td { border-bottom: 1px solid #dce6e1; padding: 2.5mm; vertical-align: top; } tr:nth-child(even) td { background: #f5f8f6; } .status { color: #20765c; font-weight: 700; }
+pre { background: #f2f6f3; border: 1px solid #d9e5de; border-radius: 3mm; padding: 3mm; font: 8.5pt/1.35 Consolas, monospace; margin: 2mm 0 3mm; }
+.flow { display: flex; align-items: center; gap: 2mm; margin: 5mm 0; } .flow div { padding: 3mm 2mm; text-align: center; flex: 1; background: #eaf4ee; border: 1px solid #d3e4d9; border-radius: 2mm; font-size: 9pt; }
+.evidence { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm 6mm; margin-top: 4mm; } figure { margin: 0; display: flex; gap: 3mm; align-items: flex-start; } figure img { width: 42mm; height: auto; border: 1px solid #d8e1db; border-radius: 3mm; } figcaption { flex: 1; font-size: 8.8pt; line-height: 1.35; padding-top: 2mm; } .badge { display: inline-block; border-radius: 50%; background: #257a60; color: white; padding: 1mm 2mm; font-weight: bold; margin-bottom: 2mm; }
+.checks { margin-top: 3mm; } .checks td { padding: 2mm 3mm; } .section-intro { margin-bottom: 4mm; }
+</style></head><body>
+<section class="page">
+  <div class="kicker">VKU · CROSS-PLATFORM MOBILE APP DEVELOPMENT</div>
+  <h1>MINI-PROJECT<br>SHORT TECHNICAL REPORT</h1>
+  <div class="metadata"><b>Course:</b> Cross-Platform Mobile App Development (VKU)<br><b>Mini-Project Title:</b> Mini-Project 2: Real-time Study Room Booking App<br><b>Team / Student Name:</b> Nguyen Ngoc Bao Trung<br><b>Submission Date:</b> 13/10/2026</div>
+  <h2>1. GENERAL INFORMATION &amp; DELIVERABLE LINKS</h2>
+  <p><b>Team Members:</b></p>
+  <p>1. Nguyen Ngoc Bao Trung — <b>Student ID:</b> 23IT.B236<br><b>Role:</b> Sole student / frontend, state management, booking logic and documentation<br><b>Contribution:</b> 100% (sole submission)</p>
+  <p><b>Live Demo URL:</b> Not provided; omitted at the student's request.</p>
+  <p><b>GitHub Repository:</b> <a href="https://github.com/bbaotrungg/Mini-Project-2">https://github.com/bbaotrungg/Mini-Project-2</a></p>
+  <p><b>Video Demo (Optional):</b> Not supplied.</p>
+  <h2>2. FEATURE IMPLEMENTATION CHECKLIST</h2>
+  <table><colgroup><col style="width:5%"><col style="width:25%"><col style="width:16%"><col style="width:54%"></colgroup><thead><tr><th>#</th><th>Required Feature</th><th>Status</th><th>Implementation Details &amp; Acceptance Level</th></tr></thead><tbody>
+    <tr><td>1</td><td>Room discovery &amp; status</td><td class="status">Complete</td><td>8 sample rooms; bundled photos, building/floor, capacity and time-based Available Now / Occupied badges.</td></tr>
+    <tr><td>2</td><td>Multi-parameter filters</td><td class="status">Complete</td><td>Instant search; A/B/C/V buildings; minimum capacity 2–20; all selected equipment must match.</td></tr>
+    <tr><td>3</td><td>Efficient room feed</td><td class="status">Implemented</td><td>FlatList, memoized cards, fixed row measurements and bounded batches. Native 60fps is not measured.</td></tr>
+    <tr><td>4</td><td>Time slots &amp; conflicts</td><td class="status">Complete</td><td>7 days, 4 two-hour slots; booked/past slots disabled. Shared server rejects simultaneous duplicates.</td></tr>
+    <tr><td>5</td><td>Booking pass &amp; check-in</td><td class="status">Complete</td><td>UUID pass, interactive QR modal and self check-in from start minus 15 minutes until the session ends.</td></tr>
+    <tr><td>6</td><td>Zustand &amp; persistence</td><td class="status">Complete</td><td>useBookingStore owns session, reservations, filters and cancellation; AsyncStorage restores saved state.</td></tr>
+    <tr><td>7</td><td>Local reminders</td><td class="status">Implemented</td><td>expo-notifications schedules at start minus 15 minutes; permissions, cancellation and tap routing. Phone delivery remains unverified.</td></tr>
+    <tr><td>8</td><td>Shared real-time updates</td><td class="status">Complete</td><td>Socket.IO snapshots synchronize connected clients; server persists JSON and revalidates all booking actions.</td></tr>
+  </tbody></table>
+</section>
+<section class="page">
+  <div class="kicker">MINI-PROJECT 2 · NGUYEN NGOC BAO TRUNG · 23IT.B236</div>
+  <h2>3. TECHNICAL ARCHITECTURE &amp; PROJECT STRUCTURE</h2>
+  <p class="section-intro">The app uses Expo SDK 57, React Native, TypeScript, Zustand and AsyncStorage. Expo Router provides stack and tab navigation on top of React Navigation. A small optional Node.js server provides shared availability; the default local demo requires no server.</p>
+  <h3>Project structure</h3>
+  <pre>Mini-Project-2/
+├── README.md / package.json    Setup and root commands
+├── study-room/
+│   ├── src/app/                Screens and route layouts
+│   ├── src/components/         RoomCard and BookingPass
+│   ├── src/store/              useBookingStore
+│   ├── src/services/           Real-time client and reminders
+│   ├── src/core.ts             Shared booking/time/filter rules
+│   ├── src/data/               Sample rooms and bundled photos
+│   ├── server/                 Socket.IO server and JSON storage
+│   └── tests/                  Rules, server and browser tests
+└── submission/                 Report, screenshots and evidence</pre>
+  <h3>State management and booking flow</h3>
+  <div class="flow"><div>Screen<br>selects room/slot</div><span>→</span><div>Zustand<br>validates request</div><span>→</span><div>Local insert /<br>server commit</div><span>→</span><div>Snapshot, pass<br>and reminder</div></div>
+  <ol>
+    <li>Hydration restores the student session, reservations, filters and reminder metadata before interactive screens render.</li>
+    <li>The discovery screen selects only the store fields it needs. Search, building, capacity and equipment filters combine immediately; cards are memoized.</li>
+    <li>Booking validates room, date, slot, start time and existing reservations. In local mode, validation and insertion run without an asynchronous gap.</li>
+    <li>In shared mode, the server performs authoritative validation and a synchronous disk commit before broadcasting the updated snapshot. Reconnection refreshes state; booking is blocked until synchronization succeeds.</li>
+    <li>A confirmed reservation receives a UUID. The app opens its QR pass and schedules a device-local reminder when permissions and timing allow.</li>
+  </ol>
+  <h3>Exception handling and time consistency</h3>
+  <ul>
+    <li>All slot calculations use Vietnam campus time (GMT+7). Midnight, year rollover, exact start/end boundaries and the seven-day window are covered by tests.</li>
+    <li>Conflicts, disconnected sockets, request timeouts and ownership errors produce actionable messages. A busy guard prevents repeated booking submissions.</li>
+    <li>Denied notification permissions and scheduling failures do not undo a valid booking. Web previews report reminders as unsupported.</li>
+    <li>Cancellation releases the slot and removes the device reminder. Shared snapshots clean up reminders for remotely cancelled or checked-in bookings.</li>
+  </ul>
+  <div class="note"><b>Scope:</b> The server is a single-process classroom demonstration. Name-based sessions and self check-in are not production authentication. Multiple server instances would require transactional database constraints and verified student identity.</div>
+</section>
+<section class="page">
+  <div class="kicker">MINI-PROJECT 2 · EMPIRICAL EVIDENCE</div>
+  <h2>4. EMPIRICAL EVIDENCE &amp; SCREENSHOTS</h2>
+  <div class="note"><b>Evidence environment:</b> These four screenshots show the running Expo web preview in Google Chrome at a 390 × 844 mobile viewport. They are browser evidence, not emulator or physical-device captures. The template's device screenshot requirement remains pending replacement with screenshots from Expo Go.</div>
+  <div class="evidence">
+    <figure><img src="screenshots/01-discover-browser.png" alt="Discovery browser screenshot"><figcaption><span class="badge">1</span><br><b>Discover rooms</b><br>Search, building chips and status badge are visible. Cards identify the building, floor, capacity and equipment.<br><br><b>Acceptance:</b> room photos load from bundled assets; no network image request is required.</figcaption></figure>
+    <figure><img src="screenshots/02-slots-browser.png" alt="Time slot browser screenshot"><figcaption><span class="badge">2</span><br><b>Prevent conflicts</b><br>The 07:30–09:30 slot displays “Booked” and is disabled after reservation. Other future slots remain available.<br><br><b>Acceptance:</b> seven dates and discrete slots use GMT+7 campus time.</figcaption></figure>
+    <figure><img src="screenshots/03-qr-pass-browser.png" alt="QR pass browser screenshot"><figcaption><span class="badge">3</span><br><b>QR booking pass</b><br>The pass contains the room, date/time, QR payload and unique booking ID.<br><br><b>Acceptance:</b> check-in is disabled before the window opens, and becomes valid at start minus 15 minutes.</figcaption></figure>
+    <figure><img src="screenshots/04-bookings-browser.png" alt="Saved reservation browser screenshot"><figcaption><span class="badge">4</span><br><b>Persisted reservation</b><br>The booking remains visible after a page reload. The student can reopen the pass or cancel.<br><br><b>Acceptance:</b> web reminder limitations are stated visibly instead of reporting a false success.</figcaption></figure>
+  </div>
+  <p class="small" style="margin-top:4mm">Capture assertions: student session entry, loaded room photo, successful reservation, visible QR pass, disabled booked slot and persistence after reload. No browser runtime page errors were recorded. Native notification delivery and native frame-rate measurements are not evidenced by these captures.</p>
+</section>
+<section class="page">
+  <div class="kicker">MINI-PROJECT 2 · CHALLENGES &amp; VALIDATION</div>
+  <h2>5. TECHNICAL CHALLENGES &amp; RESOLUTIONS</h2>
+  <h3>Challenge 1 — Concurrent reservations and stale availability</h3>
+  <p>Disabling a slot in the interface alone cannot prevent two students from submitting the same booking before either sees the other's update. Persisted client data can also become stale during a disconnection.</p>
+  <p><b>Resolution:</b> one server process owns the authoritative reservations. It validates the slot, writes the next snapshot to disk and broadcasts the result synchronously, without an await between conflict checking and insertion. The client blocks booking while disconnected or awaiting a fresh snapshot. It still revalidates locally to provide immediate feedback.</p>
+  <p><b>Evidence:</b> an automated two-client race accepts exactly one reservation and rejects the other. Additional assertions verify cancellation releases the slot, another student cannot cancel it, restored server data still blocks a duplicate, and failed disk writes never acknowledge a booking.</p>
+  <h3>Challenge 2 — Expo Go notification crash on Android</h3>
+  <p>In the installed SDK 57 package, importing the top-level expo-notifications entry point eagerly loads remote push-token registration. That code throws in Android Expo Go, even though this app needs only local reminders.</p>
+  <p><b>Resolution:</b> a dedicated localNotifications adapter imports only local scheduling, permission, channel, response and handler modules. Reminder functionality stays enabled. The adapter centralizes SDK-specific paths so future upgrades can be checked in one place.</p>
+  <p><b>Evidence:</b> regression tests inspect the installed Android dependency graph and prohibit direct package-entry imports in app code. An exported Android source map includes local scheduling and channel modules and contains none of the crashing remote push modules. After this change, the student reported the project working in Expo Go.</p>
+  <h3>Validation summary</h3>
+  <table class="checks"><thead><tr><th>Check</th><th>Observed result / acceptance boundary</th></tr></thead><tbody>
+    <tr><td>TypeScript and ESLint</td><td>Both pass with the current project source.</td></tr>
+    <tr><td>Automated tests</td><td>10 tests pass: time/filter rules, notification import regression and shared server integration.</td></tr>
+    <tr><td>Browser acceptance flow</td><td>Session, combined filtering, booking, QR pass, persistence and cancellation pass.</td></tr>
+    <tr><td>Expo / bundle checks</td><td>Earlier Expo Doctor run: 21/21 checks passed. Android, iOS and web exports completed; Android notification graph rechecked after the fix.</td></tr>
+    <tr><td>Physical-device evidence</td><td>Student confirmed Expo Go works. Annotated device captures and actual reminder delivery are still pending.</td></tr>
+    <tr><td>Scrolling performance</td><td>List optimizations implemented; native 60fps is a target, not a measured result.</td></tr>
+  </tbody></table>
+  <h3>Reproduction and references</h3>
+  <p class="small">Clone the repository, run <b>npm install</b> then <b>npm start</b> from its root. On Windows PowerShell, use npm.cmd. For shared availability, follow the README's server and environment setup. Validation logs are included in submission/evidence.</p>
+  <p class="small">Expo local notification support: <a href="https://docs.expo.dev/versions/v57.0.0/sdk/notifications/">docs.expo.dev/versions/v57.0.0/sdk/notifications/</a><br>Zustand persistence: <a href="https://zustand.docs.pmnd.rs/reference/integrations/persisting-store-data">zustand.docs.pmnd.rs/reference/integrations/persisting-store-data</a></p>
+</section>
+</body></html>

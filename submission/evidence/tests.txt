@@ -1,0 +1,74 @@
+
+> study-room@1.0.0 test
+> tsx --test tests/*.test.ts
+
+TAP version 13
+# Subtest: campus dates use Vietnam time and roll over month/year correctly
+ok 1 - campus dates use Vietnam time and roll over month/year correctly
+  ---
+  duration_ms: 29.8863
+  type: 'test'
+  ...
+# Subtest: conflicts block the same room/date/slot but allow another room, date, or slot
+ok 2 - conflicts block the same room/date/slot but allow another room, date, or slot
+  ---
+  duration_ms: 4.4782
+  type: 'test'
+  ...
+# Subtest: rejects past slots, invalid room/slot, and dates outside the seven-day window
+ok 3 - rejects past slots, invalid room/slot, and dates outside the seven-day window
+  ---
+  duration_ms: 2.6925
+  type: 'test'
+  ...
+# Subtest: occupancy is based on current time, using an exclusive end boundary
+ok 4 - occupancy is based on current time, using an exclusive end boundary
+  ---
+  duration_ms: 0.2986
+  type: 'test'
+  ...
+# Subtest: check-in opens fifteen minutes before and closes at the session end
+ok 5 - check-in opens fifteen minutes before and closes at the session end
+  ---
+  duration_ms: 0.3124
+  type: 'test'
+  ...
+# Subtest: search, building, capacity, and all equipment filters combine
+ok 6 - search, building, capacity, and all equipment filters combine
+  ---
+  duration_ms: 0.2463
+  type: 'test'
+  ...
+# Subtest: local notification runtime graph does not load Expo Go remote push registration
+ok 7 - local notification runtime graph does not load Expo Go remote push registration
+  ---
+  duration_ms: 202.8618
+  type: 'test'
+  ...
+# Subtest: app code uses the local notification adapter instead of the crashing package entry point
+ok 8 - app code uses the local notification adapter instead of the crashing package entry point
+  ---
+  duration_ms: 214.4864
+  type: 'test'
+  ...
+# Subtest: two clients cannot reserve one slot; snapshots, ownership, cancellation, and restart work
+ok 9 - two clients cannot reserve one slot; snapshots, ownership, cancellation, and restart work
+  ---
+  duration_ms: 135.3012
+  type: 'test'
+  ...
+# Subtest: a failed durable write never publishes or acknowledges a reservation
+ok 10 - a failed durable write never publishes or acknowledges a reservation
+  ---
+  duration_ms: 10.2125
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1172.7419
